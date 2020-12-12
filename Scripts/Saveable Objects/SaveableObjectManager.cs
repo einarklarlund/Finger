@@ -35,8 +35,15 @@ namespace SaveableProfile
 
         public void OnDreamTransition(DreamTransitionSignal signal)
         {
-            // _profiles = new List<ISaveableProfile>();
-            Debug.Log("Dream Ended");
+            if(signal.clearProfiles)
+            {
+                _profiles = new List<ISaveableProfile>();
+            }
+        }
+
+        public void OnDreamEnded(DreamEndingSignal signal)
+        {
+            _profiles = new List<ISaveableProfile>();
         }
     }
 }

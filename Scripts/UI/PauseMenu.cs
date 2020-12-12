@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Zenject;
+using Signals;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,11 +12,13 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button _quitButton = null;
 
     private GameManager _gameManager;
+    private SignalBus _signalBus;
 
     [Inject]
-    public void Construct(GameManager gameManager)
+    public void Construct(SignalBus signalBus, GameManager gameManager)
     {
         _gameManager = gameManager;
+        _signalBus = signalBus;
     }
 
     private void Start()
@@ -32,7 +36,11 @@ public class PauseMenu : MonoBehaviour
     
     public void HandleRestartClicked()
     {
-        _gameManager.RestartGame();
+        _signalBus.Fire(new DreamTransitionSignal()
+        {
+            clearProfiles = true,
+            dreamScene = _gameManager.beginning
+        });
     }
 
     public void HandleSettingsClicked()
@@ -42,6 +50,10 @@ public class PauseMenu : MonoBehaviour
     
     public void HandleQuitClicked()
     {
-        _gameManager.QuitGame();
+        _signalBus.Fire(new DreamTransitionSignal()
+        {
+            clearProfiles = true,
+            dreamScene = _gameManager.mainMenu
+        });
     }
 }

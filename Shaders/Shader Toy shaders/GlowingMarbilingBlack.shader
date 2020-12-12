@@ -5,6 +5,8 @@ Shader "Unlit/GlowingMarbilingBlack"
     {
         _Speed("Speed",Range(0.01,10.0)) = 1.0
         _Scale("Scale",Range(1.0,10.0)) = 2.0
+        _Color("Tint", Color) = (0, 0, 0, 1)
+        _ColorQuality("Color Quality", Int) = 16
     }
     SubShader
     {
@@ -33,6 +35,8 @@ Shader "Unlit/GlowingMarbilingBlack"
 
             fixed _Speed;
             fixed _Scale;
+            fixed4 _Color;
+            int _ColorQuality;
 
             v2f vert (appdata v)
             {
@@ -52,8 +56,12 @@ Shader "Unlit/GlowingMarbilingBlack"
                     uv.x += 0.6 / i * cos(i * 2.5* uv.y + time);
                     uv.y += 0.6 / i * cos(i * 1.5 * uv.x + time);
                 }
+
+                // limit the color palette to _ColorQuality number of collors 
+                fixed4 color = fixed4(fixed3(0.1,0.1,0.1)/abs(sin(time - uv.y - uv.x)), 1.0) * _Color;
+                color = floor(color * _ColorQuality) / _ColorQuality;
                 
-                return fixed4(fixed3(0.1,0.1,0.1)/abs(sin(time - uv.y - uv.x)), 1.0);
+                return color;
             }
             ENDCG
         }

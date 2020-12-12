@@ -11,19 +11,6 @@ public class GameInstaller : MonoInstaller
     {
         /*---------------- SIGNALS ----------------*/
         
-        /*
-        // Signal declarations
-        // GameManager
-        Container.DeclareSignal<GameStateChangedSignal>();
-        Container.DeclareSignal<StageLoadedSignal>();
-        // UI
-        Container.DeclareSignal<TransitionFadedSignal>();
-        Container.DeclareSignal<MainMenuFadedSignal>();
-        // Interactables
-        Container.DeclareSignal<InteractableSpeechBeganSignal>();
-        Container.DeclareSignal<InteractableSpeechEndedSignal>();
-        */
-
         //      ---     PLAYER      ---
 
         // PlayerInputHandler bindings
@@ -32,12 +19,12 @@ public class GameInstaller : MonoInstaller
             .FromResolve();
 
         // PlayerCharacterController signal bindings
-        Container.BindSignal<InteractableSpeechBeganSignal>()
-            .ToMethod<PlayerCharacterController>(controller => controller.OnInteractableSpeechBegan)
+        Container.BindSignal<DialogueBeganSignal>()
+            .ToMethod<PlayerCharacterController>(controller => controller.OnDialogueBegan)
             .FromResolve();
 
-        Container.BindSignal<InteractableSpeechEndedSignal>()
-            .ToMethod<PlayerCharacterController>(controller => controller.OnInteractableSpeechEnded)
+        Container.BindSignal<DialogueEndedSignal>()
+            .ToMethod<PlayerCharacterController>(controller => controller.OnDialogueEnded)
             .FromResolve();
             
         Container.BindSignal<ItemThrownSignal>()
@@ -45,11 +32,6 @@ public class GameInstaller : MonoInstaller
             .FromResolve();
 
         //  ---     INTERACTABLES      ---
-
-        // InteractableSpeech signal bindings
-        Container.BindSignal<InteractableSpeechEndedSignal>()
-            .ToMethod<InteractableSpeechInventoried>(speech => speech.OnInteractableSpeechEnded)
-            .FromResolveAll();
 
         /*---------------- DEPENDENCY INJECTIONS ----------------*/
 
@@ -68,11 +50,41 @@ public class GameInstaller : MonoInstaller
             .AsSingle()
             .NonLazy();
 
-        // Container.Bind<CharacterInventory>()
-        //     .FromComponentSibling();
+        // character bindings
+            
+        // Container.Bind<CharacterConfiguration>()
+        //     .FromComponentSibling()
+        //     .NonLazy();
 
-        Container.Bind<InteractableSpeechInventoried>()
-            .FromComponentsInHierarchy()
-            .AsTransient();
+        // Container.Bind<CharacterDialogue>()
+        //     .FromComponentSibling()
+        //     .NonLazy();
+
+        // Container.Bind<DialogueBubbleAnimator>()
+        //     .FromComponentSibling()
+        //     .NonLazy();
+
+        // Container.Bind<CharacterInteractionHandler>()
+        //     .FromComponentSibling()
+        //     .NonLazy();
+        
+        // Container.Bind(typeof(CharacterDialogue), 
+        //         typeof(CharacterConfiguration), 
+        //         typeof(CharacterInteractionHandler),
+        //         typeof(DialogueBubbleAnimator))
+        //     .FromComponentSibling()
+        //     .AsTransient()
+        //     .NonLazy();
+
+        // item bindings
+        Container.Bind<Rigidbody>()
+            .FromComponentSibling()
+            .WhenInjectedInto<ThrowableItem>();
+
+        // theme bindings
+        Container.Bind<ThemeContext>()
+            .FromComponentInHierarchy()
+            .AsSingle()
+            .NonLazy();
     }
 }

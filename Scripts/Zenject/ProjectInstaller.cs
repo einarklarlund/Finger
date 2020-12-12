@@ -11,6 +11,9 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField]
     private GameObject _UIManagerPrefab = null;
 
+    [SerializeField]
+    private GameObject _ThemeManagerPrefab = null;
+
     public override void InstallBindings()
     {
         /*---------------- SIGNALS ----------------*/
@@ -29,12 +32,14 @@ public class ProjectInstaller : MonoInstaller
         Container.DeclareSignal<PopupRequestedSignal>();
         Container.DeclareSignal<ClearPopupRequestedSignal>();
         // Interactables
-        Container.DeclareSignal<InteractableSpeechBeganSignal>();
-        Container.DeclareSignal<InteractableSpeechEndedSignal>();
+        Container.DeclareSignal<DialogueBeganSignal>();
+        Container.DeclareSignal<DialogueEndedSignal>();
         Container.DeclareSignal<ItemCollectedSignal>();
         Container.DeclareSignal<ItemThrownSignal>();
         // SaveableProfiles
         Container.DeclareSignal<ProfileSavedSignal>();
+        // Dreams
+        Container.DeclareSignal<DreamEndingSignal>();
 
         //  ---     GAMEMANAGER     ---
 
@@ -61,8 +66,8 @@ public class ProjectInstaller : MonoInstaller
             .ToMethod<UIManager>(manager => manager.OnStageLoaded)
             .FromResolve();
 
-        Container.BindSignal<InteractableSpeechBeganSignal>()
-            .ToMethod<UIManager>(manager => manager.OnInteractableSpeechBegan)
+        Container.BindSignal<DialogueBeganSignal>()
+            .ToMethod<UIManager>(manager => manager.OnDialogueBegan)
             .FromResolve();
 
         Container.BindSignal<PopupRequestedSignal>()
@@ -76,12 +81,12 @@ public class ProjectInstaller : MonoInstaller
         //  ---     INTERACTABLES      ---
 
         // PlayerInteractionManager signal bindings
-        Container.BindSignal<InteractableSpeechBeganSignal>()
-            .ToMethod<InteractionManager>(manager => manager.OnInteractableSpeechBegan)
+        Container.BindSignal<DialogueBeganSignal>()
+            .ToMethod<InteractionManager>(manager => manager.OnDialogueBegan)
             .FromResolve();
 
-        Container.BindSignal<InteractableSpeechEndedSignal>()
-            .ToMethod<InteractionManager>(manager => manager.OnInteractableSpeechEnded)
+        Container.BindSignal<DialogueEndedSignal>()
+            .ToMethod<InteractionManager>(manager => manager.OnDialogueEnded)
             .FromResolve();
             
         // PlayerInventoryManager signal bindings
@@ -95,6 +100,16 @@ public class ProjectInstaller : MonoInstaller
 
         Container.BindSignal<StageLoadedSignal>()
             .ToMethod<PlayerInventoryManager>(manager => manager.OnStageLoaded)
+            .FromResolve();
+
+        // ThemeManager signal bindings
+        Container.BindSignal<StageLoadedSignal>()
+            .ToMethod<ThemeManager>(manager => manager.OnStageLoaded)
+            .FromResolve();
+
+        // SaveableProfileManager signal bindings
+        Container.BindSignal<DreamEndingSignal>()
+            .ToMethod<SaveableProfileManager>(manager => manager.OnDreamEnded)
             .FromResolve();
 
         //  ---     SAVEABLES       ---
@@ -121,6 +136,11 @@ public class ProjectInstaller : MonoInstaller
             .AsSingle()
             .NonLazy();
             
+        Container.Bind<ThemeManager>()
+            .FromComponentInNewPrefab(_ThemeManagerPrefab)
+            .AsSingle()
+            .NonLazy();
+            
         Container.Bind<InteractionManager>()
             .FromNewComponentOnNewGameObject()
             .AsSingle()
@@ -135,5 +155,8 @@ public class ProjectInstaller : MonoInstaller
             .FromNewComponentOnNewGameObject()
             .AsSingle()
             .NonLazy();
+
+        
+
     }
 }

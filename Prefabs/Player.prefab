@@ -289,9 +289,8 @@ GameObject:
   - component: {fileID: 8746678193447392789}
   - component: {fileID: 5066150052058338567}
   - component: {fileID: 5884149016644127857}
+  - component: {fileID: 4009866924179864580}
   - component: {fileID: 7265840032963473319}
-  - component: {fileID: 7525852299977770086}
-  - component: {fileID: 7669194756570299097}
   - component: {fileID: 3122855503829242450}
   - component: {fileID: 1272397862697293493}
   - component: {fileID: 7669404262441954521}
@@ -380,31 +379,7 @@ MonoBehaviour:
   triggerAxisThreshold: 0.4
   invertYAxis: 0
   invertXAxis: 0
---- !u!114 &7265840032963473319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7253983127304857660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37e6881587da42145aa6f448a4a20043, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7525852299977770086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7253983127304857660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9629e95705b43f2468bda2fee0f91f3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7669194756570299097
+--- !u!114 &4009866924179864580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -414,6 +389,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 508e3d41de50a964fbb5e9abdcc1e8d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7265840032963473319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253983127304857660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8418778bc5d50d54eadda1d7ff79ca21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!143 &3122855503829242450

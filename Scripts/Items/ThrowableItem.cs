@@ -11,8 +11,13 @@ public class ThrowableItem : Item
 
     public bool pickedUp = false;
     
-    [SerializeField]
     private Rigidbody _rigidbody = null;
+
+    [Inject]
+    public void Construct(Rigidbody rigidbody)
+    {
+        _rigidbody = rigidbody;
+    }
 
     public override void Use()
     {
@@ -22,14 +27,14 @@ public class ThrowableItem : Item
         signalBus.Fire(new ItemThrownSignal { throwableItem = this, transform = this.transform, rigidbody = _rigidbody });
     }
 
-    public void OnTriggerEnter(Collider collider)
+    public void OnCollisionEnter(Collision collision)
     {
-        CharacterInventory characterInventory = collider.GetComponent<CharacterInventory>();
+        CharacterInventoryHandler characterInventory = collision.collider.GetComponent<CharacterInventoryHandler>();
+        characterInventory = characterInventory ?? collision.collider.GetComponentInParent<CharacterInventoryHandler>();
 
-        if(!pickedUp && characterInventory && characterInventory.Accepts(itemType))
+        if(characterInventory && characterInventory.TryAdd(itemType))
         {            
             gameObject.SetActive(false);
-            characterInventory.Add(this);
             transform.SetParent(characterInventory.transform);
             pickedUp = true;
         }

@@ -91,7 +91,6 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
     GameManager m_GameManager;
     PlayerInputHandler m_InputHandler;
     CharacterController m_Controller;
-    PlayerPickupManager m_PlayerPickupManager;
     Transform m_ViewPoint;
     PlayerStartPosition m_PlayerStartPosition;
     Camera m_Camera;
@@ -138,12 +137,6 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
         if(!m_InputHandler)
         {
             Debug.LogError("[PlayerCharacterController] Could not find m_InputHandler");
-        }
-
-        m_PlayerPickupManager = GetComponent<PlayerPickupManager>();
-        if(!m_PlayerPickupManager)
-        {
-            Debug.LogError("[PlayerCharacterController] Could not find PlayerPickupManager");
         }
 
         m_Controller.enableOverlapRecovery = true;
@@ -240,15 +233,15 @@ public class PlayerCharacterController : Singleton<PlayerCharacterController>
         signal.rigidbody.velocity = signal.transform.forward * signal.throwableItem.throwSpeed;
     }
 
-    public void OnInteractableSpeechBegan(InteractableSpeechBeganSignal signal)
+    public void OnDialogueBegan(DialogueBeganSignal signal)
     {
-        if(signal.interactableSpeech.viewPoint)
+        if(signal.viewPoint)
         {
-            LookAtViewPoint(signal.interactableSpeech.viewPoint);
+            LookAtViewPoint(signal.viewPoint);
         }
     }
 
-    public void OnInteractableSpeechEnded()
+    public void OnDialogueEnded()
     {
         StopLookingAtViewPoint();
     }

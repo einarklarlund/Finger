@@ -57,12 +57,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _ColorQuality: 16
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Exposure: 1
-    - _FeatherXRange: 8
-    - _FeatherYRange: 3
+    - _Exposure: 0
+    - _FeatherXOffset: 0
+    - _FeatherXRange: 2.83
+    - _FeatherYOffset: 0.26
+    - _FeatherYRange: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -78,19 +81,20 @@ Material:
     - _Parallax: 0.02
     - _Rotation: 0
     - _Scale: 1
+    - _SegmentCount: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 1.87
+    - _Speed: 0.19
     - _SrcBlend: 1
     - _Strandcount: 50
     - _UVSec: 0
-    - _XCutRange: 0.98
+    - _XCutRange: 1.32
     - _YawAngle: 0
     - _ZWrite: 1
     - _waveLength: 0.2
     m_Colors:
-    - _BGColorA: {r: 0.2, g: 0.2, b: 0.7, a: 1}
-    - _BGColorB: {r: 1, g: 0.6, b: 0.1, a: 1}
+    - _BGColorA: {r: 0.23529412, g: 0.17730536, b: 0.101882346, a: 1}
+    - _BGColorB: {r: 0.56078434, g: 0.36338824, b: 0.5403874, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

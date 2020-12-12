@@ -14,6 +14,6 @@ public class Events
     [System.Serializable] public class EventPickup : UnityEvent<PlayerPickupManager> { };
 
     // interactable speech stuff
-    [System.Serializable] public class EventBeginInteractableSpeech : UnityEvent<InteractableSpeech> { }
-    [System.Serializable] public class EventEndInteractableSpeech : UnityEvent { }
+    // [System.Serializable] public class EventBeginInteractableSpeech : UnityEvent<InteractableSpeech> { }
+    // [System.Serializable] public class EventEndInteractableSpeech : UnityEvent { }
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 using Zenject;
 using Signals;
 
+public enum ItemType
+{
+    EYEBALL,
+    CATEYEBALL
+}
+
 public abstract class Item : Interactable
 {
-    public enum ItemType
-    {
-        EYEBALL,
-        CATEYEBALL
-    }
-
     protected SignalBus signalBus;
     
     public ItemType itemType;

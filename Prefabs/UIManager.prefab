@@ -1030,7 +1030,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2216,11 +2216,11 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: New Text
 --- !u!1 &1230424912666039644
@@ -2716,7 +2716,7 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 573508d4cd8ddfe4b8c550b412ed2376, type: 2}
+  - {fileID: 7400000, guid: d5aedfed75549004795536294fc6017d, type: 2}
   - {fileID: 7400000, guid: 08f882730200e3b409c557f73a8d4006, type: 2}
   - {fileID: 7400000, guid: 133bb7cc4dfd3b94d869c30a92c5ac66, type: 2}
   m_WrapMode: 0

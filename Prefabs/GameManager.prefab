@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918fdaba8e58bd649890900b07818174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLevel: {fileID: 102900000, guid: dbcf7d951ba8d584781ee9913d26d661, type: 3}
+  mainMenu: {fileID: 102900000, guid: 2ecbc1cbfda028049acec7d073241e09, type: 3}
+  beginning: {fileID: 102900000, guid: dbcf7d951ba8d584781ee9913d26d661, type: 3}
   loading: 0
   currentStage: 

@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
     //needs to know: current level, how to load/unload level, 
     //keep track of game state, generate other persistent systems
 
+    public SceneAsset mainMenu;
+    public SceneAsset beginning;
     public GameState CurrentGameState { get; private set; }
-
-    public SceneAsset initialLevel = null; 
 
     [HideInInspector]
     public bool loading = false;
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     private bool _isRestartingProgress;
     private string _nextTransitionStage;
 
+
     [Inject]
     public void Construct(UIManager UIManager, SignalBus signalBus)
     {
@@ -49,9 +50,13 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 20;
         CurrentGameState = GameState.MAINMENU;
 
-        if(!initialLevel)
+        if(!beginning)
         {
-            Debug.LogError("[GameManager] InitialLevel must be set in the inspector");
+            Debug.LogError("[GameManager] Beginning must be set in the inspector");
+        }
+        if(!mainMenu)
+        {
+            Debug.LogError("[GameManager] MainMenu must be set in the inspector");
         }
 
         if(SceneManager.GetActiveScene().name != "Boot")
@@ -78,7 +83,7 @@ public class GameManager : MonoBehaviour
                     _loadedLevelNames.Add(currentStage);
                 }
             }
-
+            
             // update state to running, causes UIManager to execute OnGameStateChanged and fadeout menu
             UpdateState(GameState.RUNNING);
         }
@@ -104,7 +109,7 @@ public class GameManager : MonoBehaviour
         if(loading)
             return;
         
-        TransitionToStage(initialLevel.name);
+        TransitionToStage(beginning.name);
         //UpdateState is called after levels are loaded
     }
 
@@ -145,7 +150,7 @@ public class GameManager : MonoBehaviour
         // UpdateState is called once again in OnTransitionFaded
         UpdateState(GameState.TRANSITIONING);
 
-        // tell UI manager to fade in the backdrop. once it is faded in, the OnTransitionFadeComplete is invoked in UI Manager, and the handler in GameManager calls LoadNextStage
+        // tell UI manager to fade in the backdrop. once it is faded in, the OnTransitionFadeComplete is invoked in UI Manager, and the handler in GameManager calls LoadLevel
         _UIManager.BeginStageTransition();
     }
 

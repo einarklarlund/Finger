@@ -223,7 +223,6 @@ SubShader {
             // find grayscale
             fixed average = (color.r + color.g + color.b) / 3;
             average = min(average + 0.3, 1);    
-            average = floor(average * 16) / 16;
             color = fixed3(average, average, average);
             
             return fixed4(color,1.0) * _Color * fixed4(c, 1);

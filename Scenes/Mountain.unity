@@ -185,7 +185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 169174411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ff12dbc20f270448e2ee4c80db7440, type: 3}
+  m_Script: {fileID: 11500000, guid: 48e8972267663b34d907e1541a81ee8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   framesPerWobble: 1
@@ -456,7 +456,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 504064393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ff12dbc20f270448e2ee4c80db7440, type: 3}
+  m_Script: {fileID: 11500000, guid: 48e8972267663b34d907e1541a81ee8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   framesPerWobble: 1
@@ -541,6 +541,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 478937812}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &696958557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 696958559}
+  - component: {fileID: 696958558}
+  m_Layer: 0
+  m_Name: Theme Context
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &696958558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696958557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1490e6eb74131ca4b9f619ec3f84e914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  themes: 0000000001000000
+--- !u!4 &696958559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696958557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &820881743
 GameObject:
@@ -841,7 +885,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 90f687756d2455d49b6c2ecd3347d4c2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b605c9c968401c5448266493f854aef0, type: 2}
+      objectReference: {fileID: 2100000, guid: 97d777bb84b10a245ae2a1889b493ba0, type: 2}
     - target: {fileID: -7635826562936255635, guid: 90f687756d2455d49b6c2ecd3347d4c2, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -926,7 +970,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: fad4c785ab916724cb473708131c52f9, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 67d63cfbeda9aae4db6aa8bc20cd9b70, type: 2}
+      objectReference: {fileID: 2100000, guid: a9250e422adef4542b5479b3e2ff782b, type: 2}
     - target: {fileID: 919132149155446097, guid: fad4c785ab916724cb473708131c52f9, type: 3}
       propertyPath: m_Name
       value: Idealism
@@ -947,7 +991,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1301155029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ff12dbc20f270448e2ee4c80db7440, type: 3}
+  m_Script: {fileID: 11500000, guid: 48e8972267663b34d907e1541a81ee8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   framesPerWobble: 1
@@ -966,7 +1010,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1304111393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ff12dbc20f270448e2ee4c80db7440, type: 3}
+  m_Script: {fileID: 11500000, guid: 48e8972267663b34d907e1541a81ee8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   framesPerWobble: 1
@@ -1051,7 +1095,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1435283999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ff12dbc20f270448e2ee4c80db7440, type: 3}
+  m_Script: {fileID: 11500000, guid: 48e8972267663b34d907e1541a81ee8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   framesPerWobble: 1
@@ -1523,7 +1567,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2062522386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86ff12dbc20f270448e2ee4c80db7440, type: 3}
+  m_Script: {fileID: 11500000, guid: 48e8972267663b34d907e1541a81ee8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   framesPerWobble: 1

@@ -3,6 +3,7 @@
 Shader "psx/unlit_noambient" {
 	Properties{
 		_MainTex("Base (RGB)", 2D) = "white" {}
+        _Color("Tint", Color) = (0, 0, 0, 1)
 	}
 		SubShader{
 		Tags{ "RenderType" = "Opaque" }
@@ -29,6 +30,8 @@ Shader "psx/unlit_noambient" {
 	float4 _MainTex_ST;
 	uniform half4 unity_FogStart;
 	uniform half4 unity_FogEnd;
+	fixed4 _Color;
+
 
 	v2f vert(appdata_full v)
 	{
@@ -86,7 +89,7 @@ Shader "psx/unlit_noambient" {
 
 		clip(-IN.val);
 
-		return color;
+		return color * _Color;
 	}
 		ENDCG
 	}

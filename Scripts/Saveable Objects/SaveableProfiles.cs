@@ -10,13 +10,13 @@ namespace SaveableProfile
         void ReplaceProfile(ISaveableProfile newProfile);
     }
 
-    public class CharacterInventoryProfile : ISaveableProfile
+    public class CharacterProfile : ISaveableProfile
     {
         public void ReplaceProfile(ISaveableProfile newProfile)
         {
-            if(newProfile is CharacterInventoryProfile)
+            if(newProfile is CharacterProfile)
             {
-                CharacterInventoryProfile prof = (CharacterInventoryProfile) newProfile;
+                CharacterProfile prof = (CharacterProfile) newProfile;
                 acceptableItems = prof.acceptableItems;
                 itemAcceptanceConditions = prof.itemAcceptanceConditions;
                 currentItemType = prof.currentItemType;
@@ -28,8 +28,8 @@ namespace SaveableProfile
         }
 
         public string id { get; set; }
-        public List<Item.ItemType> acceptableItems;
+        public List<ItemType> acceptableItems;
         public List<InventoryAcceptancePair> itemAcceptanceConditions;
-        public Item.ItemType? currentItemType;
+        public ItemType? currentItemType;
     }
 }

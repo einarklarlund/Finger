@@ -1,42 +1,82 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[System.Serializable]
+[Serializable]
 public class ItemDialoguePair
 {
     [SerializeField]
-    public Item.ItemType itemType;
+    public ItemType itemType;
 
     [SerializeField]
     public List<string> dialogueScreens;
 }
 
-[System.Serializable]
+[Serializable]
 public class InventoryAcceptancePair
 {
     [SerializeField]
-    public Item.ItemType oldItem;
+    public ItemType oldItem;
 
     [SerializeField]
-    public Item.ItemType newItem;
+    public ItemType newItem;
 }
 
-[System.Serializable]
+[Serializable]
 public class ItemDreamTransition
 {
     [SerializeField]
-    public Item.ItemType itemType;
+    public ItemType itemType;
     
     [SerializeField]
     public SceneAsset dreamScene;
-
-    [SerializeField]
-    public bool isEnding;
 
     [SerializeField]
     public Ending ending;
     
     [SerializeField]
     public bool clearProfiles;
+}
+
+[Serializable]
+public class TextShakeParameter
+{
+    [SerializeField]
+    public int startIndex;
+
+    [SerializeField]
+    public int endIndex;
+
+    [SerializeField]
+    public float xShake;
+
+    [SerializeField]
+    public float yShake;
+}
+
+[Serializable]
+public class TextFontParameter
+{
+    [SerializeField]
+    public int startIndex;
+
+    [SerializeField]
+    public int endIndex;
+
+    [SerializeField]
+    public Font font;
+}
+
+[Serializable]
+public class TextSpeedParameter
+{
+    [SerializeField]
+    public int startIndex;
+
+    [SerializeField]
+    public int endIndex;
+
+    [SerializeField]
+    public float speed;
 }

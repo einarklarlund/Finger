@@ -19,7 +19,9 @@ Properties {
     [Header(3D Settings)]
     _MaxIter("Max Iteration", float) = 10
     _FeatherXRange("Feather X Range", Range(0.0,10.0)) = 8.0
-    _FeatherYRange("Feather Y Range", Range(0.0,5.0)) = 3.0    
+    _FeatherYRange("Feather Y Range", Range(0.0,5.0)) = 3.0
+    _FeatherXOffset("Feather X Offset", Float) = 0
+    _FeatherYOffset("Feather Y Offset", Float) = 0 
     _Rotation ("Rotation", Range(0, 360)) = 0
 
     [Header(Skybox)]
@@ -64,6 +66,8 @@ SubShader {
         fixed _MaxIter;
         fixed _FeatherXRange;
         fixed _FeatherYRange;
+        float _FeatherXOffset;
+        float _FeatherYOffset;
 
         fixed4 _BGColorA;
         fixed4 _BGColorB;
@@ -83,8 +87,12 @@ SubShader {
             // float latitude = acos(normalizedCoords.y);
             // float longitude = atan2(normalizedCoords.z, normalizedCoords.x);
             // float2 sphereCoords = float2(longitude, latitude) * float2(0.5/UNITY_PI, 1.0/UNITY_PI);
-            // return float2(0.5,1.0) - sphereCoords;
             
+            // if(latitude > 1.3)
+            // {
+            //     return float2(0.5,1.0) - sphereCoords;
+            // }
+
             float2 shiftUV = coords - 0.5;
             float radius = sqrt(dot(shiftUV, shiftUV));
             float angle = atan2(shiftUV.y, shiftUV.x);  
@@ -95,7 +103,7 @@ SubShader {
             // Each segment contains one reflection.
             angle = min(angle, segmentAngle - angle);
             // Convert back to UV coordinates.
-            // float2 uv = float2(cos(angle), sin(angle)) * radius + 0.5f;
+            float2 uv = float2(cos(angle), sin(angle)) * radius + 0.5f;
             // Reflect outside the inner circle boundary.
             uv = max(min(uv, 2.0 - uv), -uv);
             return uv;
@@ -321,22 +329,22 @@ SubShader {
         
             fixed2 uv = (tc - 0.5) *_Scale;
 
-            // fixed4 col = lerp(_BGColorA, _BGColorB, uv.y+0.5);
-            fixed4 col = lerp(fixed4(0.234, 0.1681875, 0.1681875, 1.0), fixed4(0.4435955, 0.4435955, 0.56, 1), uv.y * 0.5 - 0.4);
+            fixed4 col = lerp(_BGColorA, _BGColorB, uv.y * 0.5 - 0.4);
+            // fixed4 col = lerp(fixed4(0.234, 0.1681875, 0.1681875, 1.0), fixed4(0.4435955, 0.4435955, 0.56, 1), uv.y * 0.5 - 0.4);
 
             fixed3 ro = fixed3(0,0,-3);
             fixed3 rd = normalize(fixed3(uv,1));
 
-            // fixed speed = _Time.y * _Speed;
-            fixed speed = _Time.y * 0.5;
+            fixed speed = _Time.y * _Speed;
+            // fixed speed = _Time.y * 0.5;
             
             // for(fixed i = 0; i < 1.0; i+= 1.0/_MaxIter)
             for(fixed i = 0; i < 1.0; i+= 1.0/20)
             {
-                // fixed x = lerp(-_FeatherXRange, _FeatherXRange , frac(i+speed *0.1));
-                // fixed y = lerp(-_FeatherYRange, _FeatherYRange , frac(sin(i *564.3)*498.38));
-                fixed x = lerp(-3, 3, frac(i+speed *0.1));
-                fixed y = lerp(1.25, 3, frac(sin(i *564.3)*498.38));
+                fixed x = lerp(-_FeatherXRange + _FeatherXOffset, _FeatherXRange , frac(i+speed *0.1));
+                fixed y = lerp(-_FeatherYRange + _FeatherYOffset, _FeatherYRange , frac(sin(i *564.3)*498.38));
+                // fixed x = lerp(-3, 3, frac(i+speed *0.1));
+                // fixed y = lerp(1.25, 3, frac(sin(i *564.3)*498.38));
                 fixed z = lerp( 3.0, 0.0, i);
 
                 fixed4 feather = FeatherBall(ro, rd , fixed3(x,y,z), speed + i*563.34);

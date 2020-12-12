@@ -15,7 +15,7 @@ public class PlayerInventoryManager : MonoBehaviour
 
     public bool isHoldingItem => currentItem != null;
 
-    public bool IsInInventory(Item.ItemType itemType) => 
+    public bool IsInInventory(ItemType itemType) => 
         m_PlayerInventory.Exists(i => i.itemType == itemType);
 
     public Item currentItem => 

@@ -1,9 +1,7 @@
 ﻿public enum Theme
 {
     HUMAN,
-    ABBERATION,
+    ABERRATION,
     EYES,
-    REGRET,
-    PAIN,
     COMEDY
 }

@@ -131,13 +131,13 @@ public class GameManager : MonoBehaviour
 
         TransitionToStage("Main Menu");
         
-        // UpdateState is called in OnLoadComplete
+        // UpdateState is called in OnLoadCompleted
         // Application.Quit();
     }
 
     public void TransitionToStage(string newStage)
     {
-        // _nextTransitionStage is set before UnloadAllLevels is called, and will be loaded in OnUnloadOperationComplete
+        // _nextTransitionStage is set before UnloadAllLevels is called, and will be loaded in OnUnloadCompleted
         _nextTransitionStage = newStage;
 
         _transitioningToNewStage = true;
@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
     }
 
     // listener function that is called on the event ao.completed (where ao is a load operation)
-    void OnLoadOperationComplete(AsyncOperation ao)
+    void OnLoadCompleted(AsyncOperation ao)
     {
         if(_loadOperations.Contains(ao))
         {
@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour
 
                 loading = false;
 
-                if(_transitioningToNewStage)
+                if(_transitioningToNewStage || currentStage == "Main Menu")
                 {
                     // the current stage will always be set to the scene most recently loaded thru TransitionToStage(). 
                     // this means that the mainmenu stage will be active scene as well.
@@ -216,7 +216,7 @@ public class GameManager : MonoBehaviour
     }
 
     // listener function that is called on the event ao.completed (where ao is an unload operation)
-    void OnUnloadOperationComplete(AsyncOperation ao)
+    void OnUnloadCompleted(AsyncOperation ao)
     {        
         if(_unloadOperations.Contains(ao))
         {
@@ -242,8 +242,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // we must add our listener function (OnLoadOperationComplete) to the ao object so that it is called when the ao completes
-        loadOperation.completed += OnLoadOperationComplete;
+        // we must add our listener function (OnLoadCompleted) to the ao object so that it is called when the ao completes
+        loadOperation.completed += OnLoadCompleted;
         //main scene must be set as active scene after it is loaded so that projectiles & effects load in main scene
         // if(levelName == "Main")
         // {
@@ -267,8 +267,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // we must add our listener function (OnLoadOperationComplete) to the ao object so that it is called when the ao completes
-        unloadOperation.completed += OnUnloadOperationComplete;
+        // we must add our listener function (OnLoadCompleted) to the ao object so that it is called when the ao completes
+        unloadOperation.completed += OnUnloadCompleted;
 
         //change class vars
         _unloadOperations.Add(unloadOperation);

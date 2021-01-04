@@ -7,6 +7,9 @@ Shader "Custom/DizzyPlasticHazard"
 		_Scale("Scale",Range(1.0,50.)) = 20
 		_Speed("Speed",Range(0.01,5.0)) = 1.0
 		_LinesST("Lines ST",Range(1.0,50.0)) = 10.5
+		_Color1("Tint 1", Color) = (0, 0, 0, 1)
+		_Color2("Tint 2", Color) = (0, 0, 0, 1)
+    	_ColorQuality("Color Quality", Int) = 3
 	}
 
 	SubShader
@@ -39,6 +42,9 @@ Shader "Custom/DizzyPlasticHazard"
 		fixed _Scale;	
 		fixed _Speed;	
 		fixed _LinesST;
+		fixed4 _Color1;
+		fixed4 _Color2;
+		int _ColorQuality;
 
 		VertexOutput vert (VertexInput v)
 		{
@@ -65,16 +71,18 @@ Shader "Custom/DizzyPlasticHazard"
 			value = sin(value) * 3.0;			
 
 			fixed low = abs(value);
-			fixed med = abs(value) - 1.50;
-			fixed high = abs(value) - 2.5;
+			fixed med = abs(value) + 2;
+			fixed high = abs(value) - 2;
 
 			if(value > 0.0) 
 			{
-				return fixed4(med, high, med, 1.0);  
+            	fixed4 col = fixed4(med * _Color1.r, high * _Color1.g, med * _Color1.b, 1.0);
+				return floor(col * _ColorQuality) / _ColorQuality;
 			}
 			else 
 			{
-				return fixed4(min(0.5, med / 2.0), high, med, 1.0);
+				fixed4 col = fixed4(min(0.5, med / 2.0) * _Color2.r, high * _Color2.g, med * _Color2.b, 1.0);
+				return floor(col * _ColorQuality) / _ColorQuality;
 			}
 		}
 		ENDCG

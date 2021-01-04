@@ -134,7 +134,6 @@ MonoBehaviour:
   m_Material: {fileID: 2100000, guid: 3cb5196fee953a54991ba17b74df7331, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -294,7 +293,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -411,6 +409,22 @@ MonoBehaviour:
         textShakeParameters: []
         textFontParameters: []
         textSpeedParameters: []
+      - text: ...
+        isSkippable: 1
+        isPlayerDialogue: 0
+        defaultSpeed: 30
+        defaultFont: {fileID: 0}
+        textShakeParameters: []
+        textFontParameters: []
+        textSpeedParameters: []
+      - text: Nothing...
+        isSkippable: 1
+        isPlayerDialogue: 0
+        defaultSpeed: 30
+        defaultFont: {fileID: 0}
+        textShakeParameters: []
+        textFontParameters: []
+        textSpeedParameters: []
     _itemDialogues:
     - _dialogueScreens:
       - text: You Gave Me An Item.
@@ -469,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isCharacter: 1
-  themes: 
+  themes: 00000000
 --- !u!114 &1178080421917474031
 MonoBehaviour:
   m_ObjectHideFlags: 0

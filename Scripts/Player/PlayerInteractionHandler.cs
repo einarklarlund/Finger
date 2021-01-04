@@ -45,10 +45,9 @@ public class PlayerInteractionHandler : MonoBehaviour
                 // try to select the new selectable
                 _lastSelectable = selectable.TrySelect();
             }
-
             // if mouse clicked, look for an interactable
             if(PlayerInputHandler.Instance.GetUseInputDown())
-            {            
+            {     
                 Interactable interactable = selectable.GetComponent<Interactable>();
 
                 // interact with Interactable if it has been found. 
